@@ -1,0 +1,34 @@
+{
+  "name": "Testie",
+  "version": "0.0.1",
+  "homepage": "https://github.com/danjavia/Reactie",
+  "authors": [
+    "Danjavia <danjavia.iconshock@gmail.com>"
+  ],
+  "description": "Sample app for check analitycs testing",
+  "main": "index.html",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "Reactie",
+    "testie"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bower-components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.1.4",
+    "lesshat": "~3.0.2",
+    "routie": "~0.3.2"
+  }
+}
