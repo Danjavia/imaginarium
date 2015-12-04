@@ -12,7 +12,7 @@ var Home = React.createClass({
 	componentDidMount: function () {
 
 		$.getJSON( "data/items.json", function( data ) {
-			
+
 			if ( this.isMounted() ) {
 		        this.setState({ 
 		        	items: data.items
@@ -20,6 +20,18 @@ var Home = React.createClass({
 		    }
 
 		}.bind( this ));
+
+		// before unload
+		$( window ).bind( 'beforeunload', function () {
+
+		    ga( 'send', {
+	            hitType: 'event',
+	            eventCategory: 'ClosedSite',
+	            eventAction: 'close',
+	            eventLabel: 'Site Closed'
+	        });
+
+		});
 	},
 
 	render: function () {
