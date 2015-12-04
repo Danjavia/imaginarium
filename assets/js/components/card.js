@@ -23,11 +23,24 @@ var CardContent = React.createClass({
 
 var CardActions = React.createClass({
 
+    sendSaved: function ( e ) {
+
+        e.preventDefault();
+
+        ga( 'send', 'event', 'Button', 'click', 'Save into Favorites' );
+    },
+
+    download: function ( e ) {
+
+        ga( 'send', 'event', 'Button', 'click', 'Download Image' + this.props.action.item );
+
+    },
+
     render: function () {
         return (
             <div className="card-action">
-                <a href="#" className="saveTo" data-id={this.props.action.item}><i className="fa fa-heart"></i> Fav</a>
-                <a href={this.props.action.link} download className="right"><i className="fa fa-download"></i> Down</a>
+                <a href="#" className="saveTo" data-id={this.props.action.item} onClick={this.sendSaved}><i className="fa fa-heart"></i> Fav</a>
+                <a href={this.props.action.link} download className="right" onClick={this.download}><i className="fa fa-download"></i> Down</a>
             </div>
         );
     }
