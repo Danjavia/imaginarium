@@ -72,7 +72,7 @@ var CardReveal = React.createClass({
             hitType: 'event',
             eventCategory: 'Close',
             eventAction: 'click',
-            eventLabel: 'Closing Image' + this.props.action.item
+            eventLabel: 'Closing Image' + this.props.data.item
         });
     },
 
