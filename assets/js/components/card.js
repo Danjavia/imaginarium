@@ -67,10 +67,19 @@ var CardReveal = React.createClass({
         };
     },
 
+    closeView: function ( e ) {
+        ga( 'send', {
+            hitType: 'event',
+            eventCategory: 'Close',
+            eventAction: 'click',
+            eventLabel: 'Closing Image' + this.props.action.item
+        });
+    },
+
     render: function () {
         return (
             <div className="card-reveal">
-                <span className="card-title grey-text text-darken-4">{this.props.data.title}<i className="material-icons right">close</i></span>
+                <span className="card-title grey-text text-darken-4">{this.props.data.title}<i className="material-icons right" onClick={this.closeView}>close</i></span>
                 <p>{this.props.data.description}</p>
                 <CardActions action={this.state.data}/>
             </div>
