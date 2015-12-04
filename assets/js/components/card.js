@@ -31,7 +31,7 @@ var CardActions = React.createClass({
             hitType: 'event',
             eventCategory: 'Button',
             eventAction: 'click',
-            eventLabel: 'Save into Favorites'
+            eventLabel: 'Saving the ' + this.props.action.item + ' into Favorites'
         });
     },
 
