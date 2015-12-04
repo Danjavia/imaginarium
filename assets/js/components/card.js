@@ -27,19 +27,29 @@ var CardActions = React.createClass({
 
         e.preventDefault();
 
-        ga( 'send', 'event', 'Button', 'click', 'Save into Favorites' );
+        ga( 'send', {
+            hitType: 'event',
+            eventCategory: 'Button',
+            eventAction: 'click',
+            eventLabel: 'Save into Favorites'
+        });
     },
 
     download: function ( e ) {
 
-        ga( 'send', 'event', 'Button', 'click', 'Download Image' + this.props.action.item );
+        ga( 'send', {
+            hitType: 'event',
+            eventCategory: 'Button',
+            eventAction: 'click',
+            eventLabel: 'Download Image' + this.props.action.item
+        });
 
     },
 
     render: function () {
         return (
             <div className="card-action">
-                <a href="#" className="saveTo" data-id={this.props.action.item} onClick={this.sendSaved}><i className="fa fa-heart"></i> Fav</a>
+                <a className="saveTo" data-id={this.props.action.item} onClick={this.sendSaved}><i className="fa fa-heart"></i> Fav</a>
                 <a href={this.props.action.link} download className="right" onClick={this.download}><i className="fa fa-download"></i> Down</a>
             </div>
         );
