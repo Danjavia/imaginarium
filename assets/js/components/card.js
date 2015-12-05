@@ -1,10 +1,20 @@
 'use strict';
 
 var CardImage = React.createClass({
+    clickImg: function(e) {
+        debugger;
+        ga( 'send', {
+            hitType: 'event',
+            eventCategory: 'Card',
+            eventAction: 'click',
+            eventLabel: 'Upcard'
+        });
+    },
+
     render: function () {
         return (
             <div className="card-image waves-effect waves-block waves-light">
-                <img className="activator" src={this.props.image}/>
+                <img className="activator" onClick={this.clickImg} src={this.props.image}/>
             </div>
         );
     }
