@@ -1,8 +1,9 @@
 'use strict';
 
 var CardImage = React.createClass({
-    clickImg: function(e) {
-        debugger;
+
+    clickImg: function() {
+
         ga( 'send', {
             hitType: 'event',
             eventCategory: 'Card',
