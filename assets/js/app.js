@@ -14,7 +14,7 @@ routie({
         
         // render the first page on a direct access
         ReactDOM.render(
-            <Test/>,
+            <Login/>,
             document.getElementById( 'content' )
         );
     },
