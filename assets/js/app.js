@@ -1,11 +1,20 @@
 // Routes
 routie({
 
-	'': function() {
+    '': function() {
         
         // render the first page on a direct access
         ReactDOM.render(
             <Home/>,
+            document.getElementById( 'content' )
+        );
+    },
+
+	'/login': function() {
+        
+        // render the first page on a direct access
+        ReactDOM.render(
+            <Test/>,
             document.getElementById( 'content' )
         );
     },

@@ -1,3 +1,7 @@
 node_modules
 bower-components
 .idea/
+imaginarium.sublime-project
+imaginarium.sublime-workspace
+.DS_Store
+assets/.DS_Store

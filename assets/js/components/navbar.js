@@ -11,10 +11,10 @@ var Navbar = React.createClass({
 		return (
 			<nav className="indigo darken-3">
 	            <div className="nav-wrapper container">
-	                <a href="#!" className="brand-logo">Imaginarium</a>
+	                <a href="#/" className="brand-logo">Imaginarium</a>
 	                <ul className="right hide-on-med-and-down">
-	                    <li><a href="#">Coming Soon</a></li>
-	                    <li><a href="#">My Favorites</a></li>
+	                    <li><a href="#/">Home</a></li>
+	                    <li><a href="#/login">My Favorites</a></li>
 	                </ul>
 	            </div>
 	        </nav>
