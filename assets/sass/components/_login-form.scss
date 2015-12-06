@@ -2,4 +2,8 @@
 	width: 30%;
 	margin: auto;
 	margin-top: 30px;
+
+	&.into-modal {
+		width: 70%;
+	}
 }

@@ -40,6 +40,7 @@ var Home = React.createClass({
 				<Navbar/>
 				<Cards data={this.state.items} />
 				<Footer/>
+				<Modal />
 			</div>
 		);
 	}

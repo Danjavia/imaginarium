@@ -38,6 +38,14 @@ var CardActions = React.createClass({
 
         e.preventDefault();
 
+        if ( document.getElementById( 'loginModal' )  ) {
+
+            $( '#loginModal' ).openModal();
+
+            $( '#login-form' ).addClass( 'into-modal' );
+
+        }
+
         ga( 'send', {
             hitType: 'event',
             eventCategory: 'Button',
