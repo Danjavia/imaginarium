@@ -1,5 +1,5 @@
 var gulp = require( 'gulp' ),
-	connect = require('gulp-connect'),
+	connect = require( 'gulp-connect' ),
 	minifyCss = require( 'gulp-minify-css' ),
 	less = require( 'gulp-less' );
 	sass = require( 'gulp-sass' );
