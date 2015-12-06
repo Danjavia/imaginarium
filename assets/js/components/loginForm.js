@@ -33,7 +33,7 @@ var LoginForm = React.createClass({
                             <div className="input-field col s12 m12 l12">
                                 <i className="material-icons prefix">account_box</i>
                                 <input id="email" type="email" className="validate"/>
-                                <label for="email" data-error="wrong" data-success="right">Email</label>
+                                <label for="email" data-error="Check ur email" data-success="right">Email</label>
                             </div>
                         </div>
                         <div className="row">
