@@ -1,31 +1,12 @@
-require( 'babel-core/register' )
+var express = require('express');
+var app = express();
+var path = require('path');
 
-var express = require( 'express' )
-  , app = express()
-  , React = require( 'react' )
-  , ReactDOM = require( 'react-dom/server' )
-  , components = require( './public/components.js' )
-  
-import engine from 'react-engine';
+app.use(express.static('assets'));
 
-var HelloMessage = React.createFactory(components.HelloMessage)
+// viewed at http://localhost:8080
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
 
-
-app.engine('jade', require('jade').__express)
-app.set('view engine', 'jade')
-
-app.use(express.static(__dirname + '/public'))
-
-app.get('/', function(req, res){
-  res.render('index', {
-    react: ReactDOM.renderToString(HelloMessage({name: "John"}))
-  })
-})
-
-app.get('/name', function(req, res){
-  res.send("Paul, " + new Date().toString())
-})
-
-app.listen(3000, function() {
-  console.log('Listening on port 3000...')
-})
+app.listen(3000);
