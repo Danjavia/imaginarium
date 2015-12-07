@@ -3,23 +3,20 @@
 // Home component
 var Home = React.createClass({
 
+    mixins: [ReactFireMixin],
+
 	getInitialState: function () {
 		return {
 			items: []
 		};
 	},
 
+	componentWillMount: function() {
+	  	var ref = new Firebase("https://imaginarium.firebaseio.com/items");
+  		this.bindAsArray(ref, "items");
+	},
+
 	componentDidMount: function () {
-
-		$.getJSON( "data/items.json", function( data ) {
-
-			if ( this.isMounted() ) {
-		        this.setState({ 
-		        	items: data.items
-		        });
-		    }
-
-		}.bind( this ));
 
 		// before unload
 		$( window ).bind( 'beforeunload', function () {

@@ -6,3 +6,4 @@ imaginarium.sublime-workspace
 .DS_Store
 assets/.DS_Store
 .babelrc
+npm-debug.log

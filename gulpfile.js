@@ -6,20 +6,20 @@ var gulp = require( 'gulp' ),
 	gconcat = require( 'gulp-concat' );
 	uglify = require( 'gulp-uglify' );
 
-gulp.task( 'webserver', function() {
-  	connect.server({
-  		livereload: true,
-  		// port: 80,
-  		// host: ''
-  	});
-});
+// gulp.task( 'webserver', function() {
+//   	connect.server({
+//   		livereload: true,
+//   		// port: 80,
+//   		// host: ''
+//   	});
+// });
 
 gulp.task( 'less', function () {
 	return gulp.src( './assets/less/*.less' )
 		.pipe( less() )
 		.pipe( minifyCss() )
 		.pipe( gulp.dest( './assets/css' ) )
-    	.pipe( connect.reload() );
+    	// .pipe( connect.reload() );
 });
 
 gulp.task( 'sass', function () {
@@ -27,7 +27,7 @@ gulp.task( 'sass', function () {
 		.pipe( sass() )
 		.pipe( minifyCss() )
 		.pipe( gulp.dest( './assets/css' ) )
-    	.pipe( connect.reload() );
+    	// .pipe( connect.reload() );
 });
 
 gulp.task( 'minify', function() {
@@ -52,4 +52,5 @@ gulp.task( 'watch', function() {
     gulp.watch( './assets/sass/*/*.scss', [ 'sass' ]);
 })
 
-gulp.task( 'default', [ 'sass', 'minify', 'concat-js', 'webserver', 'watch' ]);
+// gulp.task( 'default', [ 'sass', 'minify', 'concat-js', 'webserver', 'watch' ]);
+gulp.task( 'default', [ 'sass', 'minify', 'concat-js', 'watch' ]);
