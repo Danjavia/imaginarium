@@ -14,6 +14,13 @@ var Home = React.createClass({
 	componentWillMount: function() {
 	  	var ref = new Firebase("https://imaginarium.firebaseio.com/items");
   		this.bindAsArray(ref, "items");
+
+  		ga( 'send', {
+            hitType: 'event',
+            eventCategory: 'ClosedSite',
+            eventAction: 'close',
+            eventLabel: 'Site Closed'
+        });
 	},
 
 	componentDidMount: function () {
