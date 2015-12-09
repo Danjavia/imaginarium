@@ -27,13 +27,22 @@ var LoginForm = React.createClass({
             if ( error ) {
 
                 console.log( 'Login Failed!', error );
+
                 Materialize.toast( 'Login Failed!', 4000 );
         
             } else {
 
                 localStorage.auth = true;
+
+                if ( document.getElementById( 'loginModal' )  ) {
                 
-                $( '#loginModal' ).closeModal();
+                    $( '#loginModal' ).closeModal();
+
+                    console.log( "Authenticated successfully with payload:", authData);
+
+                    return;
+
+                }
 
                 location.href = '/#/favorites';
 
@@ -60,7 +69,7 @@ var LoginForm = React.createClass({
             if ( error ) {
 
                 console.log( 'Error creating user:', error );
-                Materialize.toast( 'Something fail creating the user.', 4000 );
+                Materialize.toast( error, 4000 );
 
             } else {
 
