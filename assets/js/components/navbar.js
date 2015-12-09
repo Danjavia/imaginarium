@@ -44,7 +44,7 @@ var Navbar = React.createClass({
 			<nav className="indigo darken-3">
 	            <div className="nav-wrapper container">
 	                <a href="#/" className="brand-logo">Imaginarium</a>
-	                <ul className="right hide-on-med-and-down">
+	                <ul className="right hide-on-med-and-down app-menu">
 	                    <li><a href="#/">Home</a></li>
 	                    <li><a href="#/login">My Favorites</a></li>
 	                    { this.state.auth ? <li><a href="#/" onClick={this.logout}>Logout</a></li> : null }
