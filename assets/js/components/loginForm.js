@@ -42,44 +42,6 @@ var LoginForm = React.createClass({
             }
         });
 
-        // e.preventDefault();
-
-        // var author = this.refs.email.value.trim();
-        // var text = this.refs.password.value.trim();
-
-        // // form validation goes here
-        // if ( ! text || ! author ) {
-        //   return;
-        // }
-
-        // // send request to the server
-        // $.ajax({
-        //     type: "POST",
-        //     dataType: 'json',
-        //     url: '/api/users',
-        //     data: {
-        //         email: _email,
-        //         password: _password
-        //     },
-        //     success: function(data) {
-        //         console.log('data');
-        //         var _token = data.token;
-        //         var _decoded = jwt_decode(_token);
-
-        //         // decoded data from our JSON web token
-        //         console.log(_decoded);
-        //     }.bind(this),
-        //     error: function(xhr, status, err) {
-        //         console.error(this.props.url, status, err.toString());
-        //     }.bind(this)
-        // });
-
-        // console.log( 'form submitted!' );
-        // // TODO: send request to the server
-        // this.refs.email.value = '';
-        // this.refs.password.value = '';
-        // return;
-
     },
 
     registerUser: function ( e ) {
@@ -97,11 +59,18 @@ var LoginForm = React.createClass({
 
             if ( error ) {
 
-                console.log( "Error creating user:", error );
+                console.log( 'Error creating user:', error );
+                Materialize.toast( 'Something fail creating the user.', 4000 );
 
             } else {
 
-                console.log( "Successfully created user account with uid:", userData.uid );
+                localStorage.auth = true;
+
+                location.href = '/#/favorites';
+
+                Materialize.toast( 'Welcome to Imaginarium.', 4000 );
+
+                console.log( 'Successfully created user account with uid:', userData.uid );
             }
         });
 
@@ -132,10 +101,10 @@ var LoginForm = React.createClass({
                         <div className="row">
                             <div className="input-field col s12 m12 l12">
                                 <button className="btn waves-effect waves-light action-button" type="submit" name="action" onClick={this.handleSubmit}>Sign in
-                                    <i className="material-icons right">account_box</i>
+                                    <i className="material-icons right">lock</i>
                                 </button>
                                 <button className="btn blue waves-effect waves-light action-button" type="submit" name="action" onClick={this.registerUser}>Sign up
-                                    <i className="material-icons right">account_box</i>
+                                    <i className="material-icons right">account_circle</i>
                                 </button>
                             </div>
                         </div>
