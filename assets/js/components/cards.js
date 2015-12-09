@@ -4,7 +4,21 @@
 var Cards = React.createClass({
 
     getInitialState: function () {
-        return {};
+        return {
+            refUrl: "https://imaginarium.firebaseio.com",
+            authData: null
+        };
+    },
+
+    componentDidMount: function () {
+
+        var ref = new Firebase( this.state.refUrl ),
+            authData = ref.getAuth();
+
+        // Set user data into the component
+        if ( this.isMounted() ) {
+            this.setState({ auth: authData });
+        }
     },
 
     render: function () {

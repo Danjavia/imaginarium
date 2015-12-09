@@ -34,17 +34,33 @@ var CardContent = React.createClass({
 
 var CardActions = React.createClass({
 
+    getInitialState: function () {
+        return {
+            refUrl: "https://imaginarium.firebaseio.com",
+            authData: null
+        };
+    },
+
     sendSaved: function ( e ) {
 
         e.preventDefault();
 
-        if ( document.getElementById( 'loginModal' )  ) {
+        var ref = new Firebase( this.state.refUrl ),
+            authData = ref.getAuth();
 
-            $( '#loginModal' ).openModal();
+        if ( ! authData ) {
 
-            $( '#login-form' ).addClass( 'into-modal' );
+            if ( document.getElementById( 'loginModal' )  ) {
+
+                $( '#loginModal' ).openModal();
+
+                $( '#login-form' ).addClass( 'into-modal' );
+
+            }
 
         }
+
+        // console.log( this.props.userData );
 
         ga( 'send', {
             hitType: 'event',
@@ -116,8 +132,13 @@ var Card = React.createClass({
                 title: this.props.data.title,
                 description: this.props.data.description,
                 link: this.props.data.img
-            }
+            },
+            refUrl: 'https://imaginarium.firebaseio.com'
         };
+    },
+
+    componentWillMount: function () {
+
     },
 
     render: function () {
@@ -125,7 +146,7 @@ var Card = React.createClass({
             <div className="col x12 m6 l3">
                 <div className="card small">
                     <CardImage image={this.props.data.img}/>
-                    <CardContent title={this.props.data.title} link={this.props.data.link}/>
+                    <CardContent userData={this.props.auth} title={this.props.data.title} link={this.props.data.link} />
                     <CardReveal data={this.state.data}/>
                 </div>
             </div>

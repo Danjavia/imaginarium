@@ -7,13 +7,15 @@ var Home = React.createClass({
 
 	getInitialState: function () {
 		return {
-			items: []
+			items: [],
+			refUrl: "https://imaginarium.firebaseio.com"
 		};
 	},
 
 	componentWillMount: function() {
-	  	var ref = new Firebase("https://imaginarium.firebaseio.com/items");
-  		this.bindAsArray(ref, "items");
+
+	  	var ref = new Firebase( this.state.refUrl + '/items' );
+  		this.bindAsArray( ref, "items" );
 
   		ga( 'send', {
             hitType: 'event',
@@ -39,6 +41,7 @@ var Home = React.createClass({
 	},
 
 	render: function () {
+
 		return (
 			<div className="home">
 				<Navbar/>

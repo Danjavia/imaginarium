@@ -1,10 +1,13 @@
 var gulp = require( 'gulp' ),
 	connect = require( 'gulp-connect' ),
 	minifyCss = require( 'gulp-minify-css' ),
-	less = require( 'gulp-less' );
-	sass = require( 'gulp-sass' );
-	gconcat = require( 'gulp-concat' );
-	uglify = require( 'gulp-uglify' );
+	less = require( 'gulp-less' ),
+	sass = require( 'gulp-sass' ),
+	gconcat = require( 'gulp-concat' ),
+	uglify = require( 'gulp-uglify' ),
+	gutil = require( 'gulp-util' ),
+	livereload = require( 'gulp-livereload' ),
+    jshint = require( 'gulp-jshint' );
 
 // gulp.task( 'webserver', function() {
 //   	connect.server({
@@ -15,6 +18,7 @@ var gulp = require( 'gulp' ),
 // });
 
 gulp.task( 'less', function () {
+	livereload.listen();
 	return gulp.src( './assets/less/*.less' )
 		.pipe( less() )
 		.pipe( minifyCss() )
@@ -23,11 +27,12 @@ gulp.task( 'less', function () {
 });
 
 gulp.task( 'sass', function () {
+	livereload.listen();
 	return gulp.src( './assets/sass/*.scss' )
 		.pipe( sass() )
 		.pipe( minifyCss() )
 		.pipe( gulp.dest( './assets/css' ) )
-    	// .pipe( connect.reload() );
+    	.pipe( connect.reload() );
 });
 
 gulp.task( 'minify', function() {
@@ -37,6 +42,7 @@ gulp.task( 'minify', function() {
 });
 
 gulp.task( 'concat-js', function() {
+	livereload.listen();
 	return gulp.src([ 
 			'./build/react.js', 
 			'./build/react-dom.js', 
@@ -45,11 +51,19 @@ gulp.task( 'concat-js', function() {
 		])
         .pipe( gconcat( './assets/js/dist.js' ) )
         .pipe( uglify() )
+    	.pipe( connect.reload() )
         .pipe( gulp.dest( './' ) );
 });
 
 gulp.task( 'watch', function() {
+	livereload.listen();
     gulp.watch( './assets/sass/*/*.scss', [ 'sass' ]);
+
+    // Javascript change + prints log in console
+    gulp.watch( [ './assets/js/*.js', './assets/js/*/*.js' ] ).on( 'change', function( file ) {
+    	livereload.changed( file.path );
+        gutil.log( gutil.colors.yellow( 'JS changed' + ' (' + file.path + ')' ) );
+    });
 })
 
 // gulp.task( 'default', [ 'sass', 'minify', 'concat-js', 'webserver', 'watch' ]);
