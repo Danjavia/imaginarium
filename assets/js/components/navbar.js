@@ -1,5 +1,7 @@
 'use strict';
 
+window.globalState = {};
+
 // Home component
 var Navbar = React.createClass({
 
@@ -8,6 +10,14 @@ var Navbar = React.createClass({
             refUrl: "https://imaginarium.firebaseio.com",
             auth: null
 		};
+	},
+
+	componentWillMount: function () {
+	 	globalState.callback = (data) => {
+	    	this.setState({
+	    		auth: data
+	    	});     
+	  	};
 	},
 
 	componentDidMount: function () {

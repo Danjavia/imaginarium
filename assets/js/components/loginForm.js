@@ -38,6 +38,8 @@ var LoginForm = React.createClass({
                 
                     $( '#loginModal' ).closeModal();
 
+                    globalState.callback( true );
+
                     console.log( "Authenticated successfully with payload:", authData);
 
                     return;
