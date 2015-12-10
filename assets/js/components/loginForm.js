@@ -80,12 +80,14 @@ var LoginForm = React.createClass({
 
                         // Woopra track identifier
                         woopra.identify({
-                                email: authData.email,
+                                email: authData.password.email,
                                 name: authData.uid,
                         });
 
                         // The identify code should be added before the "track()" function
-                        woopra.track();
+                        woopra.track( "Access to app", {
+                            user: authData.password.email
+                        });
 
                         // Display message
                         Materialize.toast( 'Saved into favorites.', 4000 );
