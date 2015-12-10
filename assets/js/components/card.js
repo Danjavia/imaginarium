@@ -104,6 +104,10 @@ var CardActions = React.createClass({
                     favorites: favorites,
                 });
 
+                woopra.track( "Save into favorites", {
+                    item: localStorage.fav
+                });
+
                 // Display message
                 Materialize.toast( 'Saved into favorites.', 4000 );
 
