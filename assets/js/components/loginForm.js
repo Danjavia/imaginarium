@@ -164,9 +164,6 @@ var LoginForm = React.createClass({
 
                         $( '.signin' ).trigger( 'click' );
 
-                        // Display message
-                        Materialize.toast( 'Saved into favorites.', 4000 );
-
                     }, 300 );
                 }
             }
