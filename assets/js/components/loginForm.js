@@ -117,8 +117,6 @@ var LoginForm = React.createClass({
 
                 globalState.callback( true );
 
-                location.href = '/#/favorites';
-
                 Materialize.toast( 'Welcome to Imaginarium.', 4000 );
 
                 if ( document.getElementById( 'loginModal' )  ) {
@@ -161,6 +159,10 @@ var LoginForm = React.createClass({
                             favorites: favorites,
                         });
 
+                        $( '.signin' ).trigger( 'click' );
+
+                        // location.reload();
+
                     }, 300 );
                 }
 
@@ -194,7 +196,7 @@ var LoginForm = React.createClass({
                         </div>
                         <div className="row">
                             <div className="input-field col s12 m12 l12">
-                                <button className="btn waves-effect waves-light action-button" type="submit" name="action" onClick={this.handleSubmit}>Sign in
+                                <button className="btn waves-effect waves-light action-button signin" type="submit" name="action" onClick={this.handleSubmit}>Sign in
                                     <i className="material-icons right">lock</i>
                                 </button>
                                 <button className="btn blue waves-effect waves-light action-button" type="submit" name="action" onClick={this.registerUser}>Sign up
