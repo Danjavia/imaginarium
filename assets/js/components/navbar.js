@@ -1,7 +1,5 @@
 'use strict';
 
-window.globalState = {};
-
 // Home component
 var Navbar = React.createClass({
 

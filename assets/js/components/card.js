@@ -60,6 +60,43 @@ var CardActions = React.createClass({
 
         }
 
+        else {
+
+            var favorites;
+
+            var user = new Firebase( this.state.refUrl + '/users/' + authData.uid );
+
+            user.child( "favorites" ).on( "value", function( snapshot ) {
+
+                if ( snapshot.val() != null ) {
+
+                    favorites = snapshot.val();
+
+                    favorites.push( this.props.action.item );
+                }
+
+                else {
+
+                    favorites = [];
+
+                    favorites.push( this.props.action.item );
+                }                 
+
+            }.bind(this));
+
+            // Unique array
+            favorites = $.grep( favorites, function( v, k ) {
+                return $.inArray( v ,favorites ) === k;
+            });
+
+            // Save the array into firebase
+            ref.child( "users" ).child( authData.uid ).set({
+                favorites: favorites,
+            });
+
+                
+        }
+
         // console.log( this.props.userData );
 
         ga( 'send', {

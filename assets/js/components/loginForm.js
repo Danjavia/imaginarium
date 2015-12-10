@@ -40,6 +40,11 @@ var LoginForm = React.createClass({
 
                     globalState.callback( true );
 
+                    // console.log( this.state.refUrl + '/users/' + authData.uid ); return;
+
+                    var user = new Firebase( this.state.refUrl + '/users/' + authData.uid );
+                    console.log( user );
+
                     console.log( "Authenticated successfully with payload:", authData);
 
                     return;
@@ -51,7 +56,7 @@ var LoginForm = React.createClass({
                 console.log( "Authenticated successfully with payload:", authData);
 
             }
-        });
+        }.bind( this ));
 
     },
 
