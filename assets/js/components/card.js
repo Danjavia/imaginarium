@@ -48,6 +48,9 @@ var CardActions = React.createClass({
         var ref = new Firebase( this.state.refUrl ),
             authData = ref.getAuth();
 
+        localStorage.fav = this.props.action.item;
+
+        // If the user data doesn't exits open login modal
         if ( ! authData ) {
 
             if ( document.getElementById( 'loginModal' )  ) {
@@ -60,12 +63,16 @@ var CardActions = React.createClass({
 
         }
 
+        // If the user is logged exec this
         else {
 
+            // set Favorites
             var favorites;
 
+            // Get user data
             var user = new Firebase( this.state.refUrl + '/users/' + authData.uid );
 
+            // Get user favorites
             user.child( "favorites" ).on( "value", function( snapshot ) {
 
                 if ( snapshot.val() != null ) {
@@ -82,17 +89,22 @@ var CardActions = React.createClass({
                     favorites.push( this.props.action.item );
                 }                 
 
-            }.bind(this));
+            }.bind( this ));
 
-            // Unique array
-            favorites = $.grep( favorites, function( v, k ) {
-                return $.inArray( v ,favorites ) === k;
-            });
+            // set simple timeout to prevent async data
+            setTimeout( function () {
 
-            // Save the array into firebase
-            ref.child( "users" ).child( authData.uid ).set({
-                favorites: favorites,
-            });
+                // Unique array
+                favorites = $.grep( favorites, function( v, k ) {
+                    return $.inArray( v ,favorites ) === k;
+                });
+
+                // Save the array into firebase
+                ref.child( "users" ).child( authData.uid ).set({
+                    favorites: favorites,
+                });
+
+            }, 300 );
 
                 
         }

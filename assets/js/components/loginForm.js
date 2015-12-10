@@ -26,8 +26,6 @@ var LoginForm = React.createClass({
 
             if ( error ) {
 
-                console.log( 'Login Failed!', error );
-
                 Materialize.toast( 'Login Failed!', 4000 );
         
             } else {
@@ -42,18 +40,51 @@ var LoginForm = React.createClass({
 
                     // console.log( this.state.refUrl + '/users/' + authData.uid ); return;
 
-                    var user = new Firebase( this.state.refUrl + '/users/' + authData.uid );
-                    console.log( user );
+                    // set Favorites
+                    var favorites;
 
-                    console.log( "Authenticated successfully with payload:", authData);
+                    // Get user data
+                    var user = new Firebase( this.state.refUrl + '/users/' + authData.uid );
+
+                    // Get user favorites
+                    user.child( "favorites" ).on( "value", function( snapshot ) {
+
+                        if ( snapshot.val() != null ) {
+
+                            favorites = snapshot.val();
+
+                            favorites.push( localStorage.fav );
+                        }
+
+                        else {
+
+                            favorites = [];
+
+                            favorites.push( localStorage.fav );
+                        }                 
+
+                    }.bind( this ));
+
+                    // set simple timeout to prevent async data
+                    setTimeout( function () {
+
+                        // Unique array
+                        favorites = $.grep( favorites, function( v, k ) {
+                            return $.inArray( v ,favorites ) === k;
+                        });
+
+                        // Save the array into firebase
+                        ref.child( "users" ).child( authData.uid ).set({
+                            favorites: favorites,
+                        });
+
+                    }, 300 );
 
                     return;
 
                 }
 
                 location.href = '/#/favorites';
-
-                console.log( "Authenticated successfully with payload:", authData);
 
             }
         }.bind( this ));
@@ -80,15 +111,62 @@ var LoginForm = React.createClass({
 
             } else {
 
+                $( '#loginModal' ).closeModal();
+
                 localStorage.auth = true;
+
+                globalState.callback( true );
 
                 location.href = '/#/favorites';
 
                 Materialize.toast( 'Welcome to Imaginarium.', 4000 );
 
+                if ( document.getElementById( 'loginModal' )  ) {
+
+                    // set Favorites
+                    var favorites;
+
+                    // Get user data
+                    var user = new Firebase( this.state.refUrl + '/users/' + userData.uid );
+
+                    // Get user favorites
+                    user.child( "favorites" ).on( "value", function( snapshot ) {
+
+                        if ( snapshot.val() != null ) {
+
+                            favorites = snapshot.val();
+
+                            favorites.push( localStorage.fav );
+                        }
+
+                        else {
+
+                            favorites = [];
+
+                            favorites.push( localStorage.fav );
+                        }                 
+
+                    }.bind( this ));
+
+                    // set simple timeout to prevent async data
+                    setTimeout( function () {
+
+                        // Unique array
+                        favorites = $.grep( favorites, function( v, k ) {
+                            return $.inArray( v ,favorites ) === k;
+                        });
+
+                        // Save the array into firebase
+                        ref.child( "users" ).child( userData.uid ).set({
+                            favorites: favorites,
+                        });
+
+                    }, 300 );
+                }
+
                 console.log( 'Successfully created user account with uid:', userData.uid );
             }
-        });
+        }.bind( this ));
 
     },
 
