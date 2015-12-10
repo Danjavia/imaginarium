@@ -78,6 +78,9 @@ var LoginForm = React.createClass({
                             favorites: favorites,
                         });
 
+                        // Display message
+                        Materialize.toast( 'Saved into favorites.', 4000 );
+
                     }, 300 );
 
                     return;
@@ -161,12 +164,11 @@ var LoginForm = React.createClass({
 
                         $( '.signin' ).trigger( 'click' );
 
-                        // location.reload();
+                        // Display message
+                        Materialize.toast( 'Saved into favorites.', 4000 );
 
                     }, 300 );
                 }
-
-                console.log( 'Successfully created user account with uid:', userData.uid );
             }
         }.bind( this ));
 

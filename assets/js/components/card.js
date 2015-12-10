@@ -104,6 +104,9 @@ var CardActions = React.createClass({
                     favorites: favorites,
                 });
 
+                // Display message
+                Materialize.toast( 'Saved into favorites.', 4000 );
+
             }, 300 );
 
                 
