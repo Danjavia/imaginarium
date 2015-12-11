@@ -39,6 +39,7 @@ var Navbar = React.createClass({
             authData = ref.getAuth();
         
         if ( authData ) {
+        	
 	     	// Report user exit
             woopra.track( "Exit of application", {
                 user: authData.password.email

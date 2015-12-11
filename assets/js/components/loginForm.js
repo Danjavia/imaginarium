@@ -32,6 +32,17 @@ var LoginForm = React.createClass({
 
                 localStorage.auth = true;
 
+                // Woopra track identifier
+                woopra.identify({
+                        email: authData.password.email,
+                        name: authData.password.email,
+                });
+
+                // The identify code should be added before the "track()" function
+                woopra.track( "Access to app", {
+                    user: authData.password.email
+                });
+
                 if ( document.getElementById( 'loginModal' )  ) {
                 
                     $( '#loginModal' ).closeModal();
@@ -78,17 +89,6 @@ var LoginForm = React.createClass({
                             favorites: favorites,
                         });
 
-                        // Woopra track identifier
-                        woopra.identify({
-                                email: authData.password.email,
-                                name: authData.uid,
-                        });
-
-                        // The identify code should be added before the "track()" function
-                        woopra.track( "Access to app", {
-                            user: authData.password.email
-                        });
-
                         // Display message
                         Materialize.toast( 'Saved into favorites.', 4000 );
 
@@ -132,6 +132,17 @@ var LoginForm = React.createClass({
                 globalState.callback( true );
 
                 Materialize.toast( 'Welcome to Imaginarium.', 4000 );
+
+                // Woopra track identifier
+                woopra.identify({
+                        email: userData.password.email,
+                        name: userData.uid,
+                });
+
+                // The identify code should be added before the "track()" function
+                woopra.track( "Access to app", {
+                    user: userData.password.email
+                });
 
                 if ( document.getElementById( 'loginModal' )  ) {
 
