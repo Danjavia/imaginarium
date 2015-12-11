@@ -43,6 +43,10 @@ var LoginForm = React.createClass({
                     user: authData.password.email
                 });
 
+                // KissMetrics event
+                _kmq.push([ 'record', 'Access to app', { 'userId' : authData.uid }]);
+
+                // if exist login modal
                 if ( document.getElementById( 'loginModal' )  ) {
                 
                     $( '#loginModal' ).closeModal();
@@ -142,6 +146,9 @@ var LoginForm = React.createClass({
                 woopra.track( "Access to app", {
                     userId: userData.uid
                 });
+
+                // KissMetrics event
+                _kmq.push(['record', 'Access to app', { 'userId' : userData.uid }]);
 
                 if ( document.getElementById( 'loginModal' )  ) {
 

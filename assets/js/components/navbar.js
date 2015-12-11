@@ -39,11 +39,14 @@ var Navbar = React.createClass({
             authData = ref.getAuth();
         
         if ( authData ) {
-        	
+
 	     	// Report user exit
             woopra.track( "Exit of application", {
                 user: authData.password.email
             });
+
+            // KissMetrics event
+            _kmq.push([ 'record', 'Exit of application' ]);
 
         	ref.unauth();
         	delete localStorage.auth;
