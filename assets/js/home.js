@@ -16,13 +16,6 @@ var Home = React.createClass({
 
 	  	var ref = new Firebase( this.state.refUrl + '/items' );
   		this.bindAsArray( ref, "items" );
-
-  		ga( 'send', {
-            hitType: 'event',
-            eventCategory: 'ClosedSite',
-            eventAction: 'close',
-            eventLabel: 'Site Closed'
-        });
 	},
 
 	componentDidMount: function () {
@@ -32,7 +25,7 @@ var Home = React.createClass({
 
 		    ga( 'send', {
 	            hitType: 'event',
-	            eventCategory: 'ClosedSite',
+	            eventCategory: 'Window Events',
 	            eventAction: 'close',
 	            eventLabel: 'Site Closed'
 	        });

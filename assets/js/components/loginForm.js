@@ -46,6 +46,14 @@ var LoginForm = React.createClass({
                 // KissMetrics event
                 _kmq.push([ 'record', 'Access to app', { 'userId' : authData.uid }]);
 
+                // intercom code
+                window.Intercom( 'boot', {
+                    app_id: "y36fm6q4",
+                    email: authData.password.email, // TODO: The current logged in user's email address.
+                });
+
+                window.Intercom( 'update' );
+
                 // if exist login modal
                 if ( document.getElementById( 'loginModal' )  ) {
                 

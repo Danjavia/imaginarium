@@ -123,7 +123,7 @@ var CardActions = React.createClass({
 
         ga( 'send', {
             hitType: 'event',
-            eventCategory: 'Button',
+            eventCategory: 'Button clicks',
             eventAction: 'click',
             eventLabel: 'Saving the ' + this.props.action.item + ' into Favorites'
         });
@@ -131,12 +131,20 @@ var CardActions = React.createClass({
 
     download: function ( e ) {
 
+        // dataLayer.push({ 'event': 'Downloads' })
+
         ga( 'send', {
             hitType: 'event',
-            eventCategory: 'Button',
+            eventCategory: 'Button clicks',
             eventAction: 'click',
             eventLabel: 'Download Image' + this.props.action.item
         });
+
+        window.Intercom( 'boot', {
+            app_id: "y36fm6q4"
+        });
+ 
+        window.Intercom( 'update' );
 
     },
 
@@ -144,7 +152,7 @@ var CardActions = React.createClass({
         return (
             <div className="card-action">
                 <a href="#" className="saveTo" data-id={this.props.action.item} onClick={this.sendSaved}><i className="fa fa-heart"></i> Fav</a>
-                <a href={this.props.action.link} download className="right" onClick={this.download}><i className="fa fa-download"></i> Down</a>
+                <a href={this.props.action.link} download className="right download-button"  data-id={this.props.action.item} onClick={this.download}><i className="fa fa-download"></i> Down</a>
             </div>
         );
     }
@@ -164,7 +172,7 @@ var CardReveal = React.createClass({
     closeView: function ( e ) {
         ga( 'send', {
             hitType: 'event',
-            eventCategory: 'Close',
+            eventCategory: 'Button clicks',
             eventAction: 'click',
             eventLabel: 'Closing Image' + this.props.data.item
         });
