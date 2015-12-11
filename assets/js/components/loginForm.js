@@ -34,8 +34,8 @@ var LoginForm = React.createClass({
 
                 // Woopra track identifier
                 woopra.identify({
-                        email: authData.password.email,
-                        name: authData.password.email,
+                    email: authData.password.email,
+                    name: authData.password.email,
                 });
 
                 // The identify code should be added before the "track()" function
@@ -135,13 +135,12 @@ var LoginForm = React.createClass({
 
                 // Woopra track identifier
                 woopra.identify({
-                        email: userData.password.email,
-                        name: userData.uid,
+                    userId: userData.uid
                 });
 
                 // The identify code should be added before the "track()" function
                 woopra.track( "Access to app", {
-                    user: userData.password.email
+                    userId: userData.uid
                 });
 
                 if ( document.getElementById( 'loginModal' )  ) {
